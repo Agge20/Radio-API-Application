@@ -16,3 +16,9 @@
   max-width: 300px;
   margin: 1rem;
 }
+.program_image_wrapper {
+  width: 200px;
+}
+.program_image_wrapper img {
+  max-width: 100%;
+}

@@ -5,23 +5,29 @@ import styles from "../styles/ChannelS.module.css";
 
 const Channel = (props) => {
   const history = useHistory();
-  const { getChannelById, specificChannel } = useContext(ChannelsContext);
+  const {
+    getChannelById,
+    getProgramById,
+    specificChannel,
+    channelPrograms,
+  } = useContext(ChannelsContext);
+
   //Get the id-params and store it in a variable
   const { channelId } = props.match.params;
 
   //On render it fetches the specific channel based on id
   useEffect(() => {
-    console.log("props: ", props);
     console.log("This is channelId id in Channel:  ", channelId);
-    getChannelById(channelId);
     console.log("this is specificChannel: ", specificChannel);
+    getChannelById(channelId);
+    getProgramById(channelId);
   }, []);
-  let content = <h3>Loading...</h3>;
+  let channelContent = <h3>Loading...</h3>;
+  let programsContent = <h3>Loading... programs</h3>;
   //Function that renders the channel
   const renderChannel = () => {
-    console.log("test", specificChannel);
     return (
-      <div className={styles.content_wrapper}>
+      <div className={styles.channelContent_wrapper}>
         <h1>Välkommen till {specificChannel.channel.name}</h1>
         <img src={specificChannel.channel.image} />
         <a href={specificChannel.channel.liveaudio.url}>Lyssna på livemusik</a>
@@ -30,13 +36,45 @@ const Channel = (props) => {
       </div>
     );
   };
+  const renderPrograms = () => {
+    console.log("This is channelPrograms, ", channelPrograms);
+    console.log(channelPrograms.programs);
+    return (
+      <div>
+        <h3>Kanalens program</h3>
+        {channelPrograms.programs.map((program, index) => (
+          <div>
+            <div className={styles.program_image_wrapper}>
+              <img src={program.programimage} alt={program.name} />
+            </div>
+            <h4>{program.name}</h4>
+            <p>{program.description}</p>
+            <a href={program.programurl}>Gå till programmet</a>
+            <h3>Sänds {program.broadcastinfo}</h3>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
+  //Checks if the clicked channel is loaded and sets the content to the renderChannel func
   if (specificChannel && renderChannel) {
-    content = renderChannel();
+    channelContent = renderChannel();
   } else {
-    content = <h3>Cannot load channel...</h3>;
+    channelContent = <h3>Cannot load channel...</h3>;
   }
-  return <div className={styles.main_wrapper}>{content}</div>;
+
+  if (channelPrograms) {
+    programsContent = renderPrograms();
+  } else {
+    channelContent = <h3>Cannot load programs...</h3>;
+  }
+  return (
+    <div className={styles.main_wrapper}>
+      {channelContent}
+      {programsContent}
+    </div>
+  );
 };
 
 export default Channel;

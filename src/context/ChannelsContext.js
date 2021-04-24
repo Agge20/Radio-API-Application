@@ -5,6 +5,7 @@ export const ChannelsContext = createContext();
 const ChannelsProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [specificChannel, setSpecificChannel] = useState(null);
+  const [channelPrograms, setChannelPrograms] = useState(null);
 
   useEffect(() => {
     getAllChannels();
@@ -25,11 +26,19 @@ const ChannelsProvider = (props) => {
     console.log("channel: ", channel);
     setSpecificChannel(channel);
   };
-
+  //Fetch specific channel that user clicked on
+  const getProgramById = async (channelId) => {
+    let programs = await fetch(`/api/v1/channel/programs/${channelId}`);
+    programs = await programs.json();
+    console.log("PROGRAMS: ", programs);
+    setChannelPrograms(programs);
+  };
   const values = {
     channels,
     specificChannel,
     getChannelById,
+    getProgramById,
+    channelPrograms,
   };
 
   return (

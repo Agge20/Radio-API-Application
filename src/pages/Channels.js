@@ -28,6 +28,7 @@ const Channels = () => {
     <div>
       <h1>Här har vi kanalerna</h1>
       <div className={styles.channel_card_wrapper}>{content}</div>
+      <footer>{channels.copyright}</footer>
     </div>
   );
 };

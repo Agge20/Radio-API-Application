@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ChannelsContext } from "../context/ChannelsContext.js";
+import styles from "../styles/ChannelS.module.css";
 
 const Channel = (props) => {
   const history = useHistory();
@@ -12,27 +13,30 @@ const Channel = (props) => {
   useEffect(() => {
     console.log("props: ", props);
     console.log("This is channelId id in Channel:  ", channelId);
-    console.log(("PROPS PARAMS ", props.params));
-    //getChannelById(channelId);
+    getChannelById(channelId);
     console.log("this is specificChannel: ", specificChannel);
   }, []);
   let content = <h3>Loading...</h3>;
   //Function that renders the channel
   const renderChannel = () => {
-    return <h2>This is the channel name: {specificChannel.name}</h2>;
+    console.log("test", specificChannel);
+    return (
+      <div className={styles.content_wrapper}>
+        <h1>Välkommen till {specificChannel.channel.name}</h1>
+        <img src={specificChannel.channel.image} />
+        <a href={specificChannel.channel.liveaudio.url}>Lyssna på livemusik</a>
+        <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
+        <p>{specificChannel.channel.tagline}</p>
+      </div>
+    );
   };
 
-  if (specificChannel) {
+  if (specificChannel && renderChannel) {
     content = renderChannel();
   } else {
     content = <h3>Cannot load channel...</h3>;
   }
-  return (
-    <div>
-      <h1>This is channel page</h1>
-      {content}
-    </div>
-  );
+  return <div className={styles.main_wrapper}>{content}</div>;
 };
 
 export default Channel;

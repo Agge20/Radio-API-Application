@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
           <Route exact path="/" component={Home} />
           <Route exact path="/all-channels" component={Channels} />
-          <Route exact path path="/:channelId" component={Channel} />
+          <Route exact path path="/channel/:channelId" component={Channel} />
         </BrowserRouter>
       </ChannelsProvider>
     </div>

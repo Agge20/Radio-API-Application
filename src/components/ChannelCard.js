@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { ChannelsContext } from "../context/ChannelsContext";
-
 import styles from "../styles/ChannelCardS.module.css";
 
 const ChannelCard = (props) => {
@@ -18,9 +16,11 @@ const ChannelCard = (props) => {
       className={styles.channel_card}
       onClick={() => goToChannel(props.channel.id)}
     >
-      <img src={props.channel.image} alt={props.channel.name} />
-      <div className={styles.info_wrapper}>
-        <h2 className={styles.h3}>{props.channel.name}</h2>
+      <div className={styles.inner_wrapper}>
+        <img src={props.channel.image} alt={props.channel.name} />
+      </div>
+      <div className={`${styles.info_wrapper} ${styles.inner_wrapper}`}>
+        <h2>{props.channel.name}</h2>
         <h4>Kanaltyp: {props.channel.channeltype}</h4>
         <p>{props.channel.tagline}</p>
       </div>

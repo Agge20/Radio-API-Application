@@ -8,6 +8,7 @@ const ChannelsProvider = (props) => {
   const [channelPrograms, setChannelPrograms] = useState(null);
   const [categories, setCategories] = useState(null);
   const [programsByCategory, setProgramsByCategory] = useState(null);
+  const [schedule, setSchedule] = useState(null);
 
   useEffect(() => {
     getAllChannels();
@@ -50,6 +51,14 @@ const ChannelsProvider = (props) => {
     programs = await programs.json();
     setProgramsByCategory(programs);
   };
+
+  //Fetch schedule by date and channelId
+  const getChannelSchedule = async (channelId, searchDate) => {
+    let schedule = await fetch(`/api/v1/schedule/${channelId}/${searchDate}`);
+    console.log("SchduleTest", schedule);
+    schedule = await schedule.json();
+    setSchedule(schedule);
+  };
   const values = {
     channels,
     specificChannel,
@@ -60,6 +69,8 @@ const ChannelsProvider = (props) => {
     categories,
     getProgramsByCategory,
     programsByCategory,
+    schedule,
+    getChannelSchedule,
   };
 
   return (

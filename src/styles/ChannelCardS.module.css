@@ -1,13 +1,40 @@
-.channel_card {
-  border: solid red 2px;
-  height: auto;
-  width: 350px;
-  margin: 1rem;
+.main_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 7.5rem;
+}
+.main_wrapper h1 {
+  font-size: 3rem;
+  margin: 0px;
+  letter-spacing: 0.3rem;
+}
+.main_wrapper h3 {
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+}
+.Link {
+  margin: 1rem;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  text-decoration: none;
+}
+.Link:hover {
+  color: #091a32;
+  font-size: 1.2rem;
+}
+.channel_card {
+  background-color: white;
+  height: 250px;
+  width: 500px;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   text-align: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .channel_card img {
   max-width: 100%;
@@ -20,12 +47,26 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.inner_wrapper {
+  width: 50%;
+}
 .info_wrapper {
   height: 300px;
-  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
-.h3 {
-  font-size: 2rem;
-  font-family: "Bebas Neue", cursive;
-  letter-spacing: 0.3rem;
+.info_wrapper h2,
+h4 {
+  color: #091a32;
+  letter-spacing: 0.1rem;
+}
+.info_wrapper p {
+  width: 90%;
+  font-size: 0.9rem;
+  color: #091a32;
+}
+.catogories {
+  margin: 3rem;
 }

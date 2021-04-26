@@ -1,10 +1,9 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
 import { ChannelsContext } from "../context/ChannelsContext.js";
 import styles from "../styles/ChannelS.module.css";
+import ChannelSchedule from "../components/ChannelSchedule.js";
 
 const Channel = (props) => {
-  const history = useHistory();
   const {
     getChannelById,
     getProgramById,
@@ -29,10 +28,17 @@ const Channel = (props) => {
     return (
       <div className={styles.channelContent_wrapper}>
         <h1>Välkommen till {specificChannel.channel.name}</h1>
-        <img src={specificChannel.channel.image} />
-        <a href={specificChannel.channel.liveaudio.url}>Lyssna på livemusik</a>
-        <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
-        <p>{specificChannel.channel.tagline}</p>
+        <img
+          src={specificChannel.channel.image}
+          alt={specificChannel.channel.name}
+        />
+        <div className={styles.a_wrapper}>
+          <a href={specificChannel.channel.liveaudio.url}>
+            Lyssna på livemusik
+          </a>
+          <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
+        </div>
+        <p className={styles.tagline}>{specificChannel.channel.tagline}</p>
       </div>
     );
   };
@@ -42,17 +48,25 @@ const Channel = (props) => {
     return (
       <div>
         <h3>Kanalens program</h3>
-        {channelPrograms.programs.map((program, index) => (
-          <div>
-            <div className={styles.program_image_wrapper}>
-              <img src={program.programimage} alt={program.name} />
+        <div className={styles.programs_wrapper}>
+          {channelPrograms.programs.map((program, index) => (
+            <div key={index} className={styles.program_card}>
+              <div
+                className={`${styles.program_image_wrapper} ${styles.program_card_inner_wrapper}`}
+              >
+                <img src={program.programimage} alt={program.name} />
+              </div>
+              <div
+                className={`${styles.program_card_inner_wrapper} ${styles.program_info_wrapper}`}
+              >
+                <h4>{program.name}</h4>
+                <p>{program.description}</p>
+                <a href={program.programurl}>Gå till programmet</a>
+                <h3>Sänds {program.broadcastinfo}</h3>
+              </div>
             </div>
-            <h4>{program.name}</h4>
-            <p>{program.description}</p>
-            <a href={program.programurl}>Gå till programmet</a>
-            <h3>Sänds {program.broadcastinfo}</h3>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   };
@@ -73,6 +87,8 @@ const Channel = (props) => {
     <div className={styles.main_wrapper}>
       {channelContent}
       {programsContent}
+
+      <ChannelSchedule channelId={channelId} />
     </div>
   );
 };

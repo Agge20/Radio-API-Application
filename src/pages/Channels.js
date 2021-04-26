@@ -22,7 +22,11 @@ const Channels = () => {
   const renderCategories = () => {
     console.log("This is categories in channels: ", categories);
     return categories.programcategories.map((category, index) => (
-      <Link key={index} to={`/kategori/${category.name}`}>
+      <Link
+        key={index}
+        to={`/kategori/${category.name}`}
+        className={styles.Link}
+      >
         {category.name}
       </Link>
     ));
@@ -42,10 +46,10 @@ const Channels = () => {
   }
 
   return (
-    <div>
-      <h1>Här har vi kanalerna</h1>
+    <div className={styles.main_wrapper}>
+      <h1>Välkommen till SE-Radio kanalista</h1>
       <h3>Kategorier</h3>
-      <div>{categoriesContent}</div>
+      <div className={styles.catogories}>{categoriesContent}</div>
       <div className={styles.channel_card_wrapper}>{channelsContent}</div>
     </div>
   );

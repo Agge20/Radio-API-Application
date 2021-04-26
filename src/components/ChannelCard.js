@@ -5,7 +5,6 @@ import { ChannelsContext } from "../context/ChannelsContext";
 import styles from "../styles/ChannelCardS.module.css";
 
 const ChannelCard = (props) => {
-  const { specificChannel } = useContext(ChannelsContext);
   const history = useHistory();
 
   //Function that handles what to do when you click on a channel

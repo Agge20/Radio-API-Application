@@ -60,7 +60,7 @@ const register = (req, res) => {
   //If the user dosen't already exist then we can proceed to create one
   userToRegister.password = Encrypt.encrypt(userToRegister.password);
   query = `INSERT INTO users (email, password) VALUES ($email, $password)`;
-  let params = {
+  params = {
     $email: userToRegister.email,
     $password: userToRegister.password,
   };
@@ -76,4 +76,4 @@ const register = (req, res) => {
 };
 
 // Export the differents route handlers
-module.exports = { whoami, login, logout, register };
+module.exports = { whoami, login, register };

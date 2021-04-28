@@ -1,4 +1,5 @@
 express = require("express");
+const session = require("express-session");
 
 const port = 3001;
 
@@ -10,8 +11,18 @@ const app = express();
 
 app.use(express.json());
 
+app.use(
+  session({
+    secret: "veni vidi vici",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: "auto" },
+  })
+);
+
 app.use("/api/v1", channelRoutes);
 
+// JAG GLÖMDE LÄGGA PROGRAM-ROUTES I EN EGEN ROUTES-FIL - URSÄKTA ^^
 // app.use("/api/v1/programs", programRoutes);
 
 app.listen(port, () => {

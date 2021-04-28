@@ -13,9 +13,11 @@
   align-items: center;
   padding-top: 5rem;
 }
+
 .channelContent_wrapper img {
   max-width: 300px;
 }
+
 .channelContent_wrapper a {
   color: white;
   background-color: #091a32;
@@ -26,10 +28,12 @@
   font-family: "Roboto Condensed", sans-serif !important;
   font-size: 1.2rem;
 }
+
 .a_wrapper {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+
 .tagline {
   width: 50%;
   text-align: center;
@@ -40,10 +44,12 @@
 .channelContent_wrapper a:hover {
   color: #091a32;
 }
+
 .programs_wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
 }
 .program_card {
   width: 500px;
@@ -55,9 +61,11 @@
   align-items: center;
   background-color: white;
 }
+
 .program_card_inner_wrapper {
   width: 50%;
 }
+
 .program_info_wrapper {
   display: flex;
   flex-direction: column;
@@ -66,13 +74,16 @@
   text-align: center;
   padding: 1rem;
 }
+
 .program_info_wrapper a {
   color: #091a32;
   text-decoration: none;
 }
+
 .program_info_wrapper a:hover {
   color: #97a7bd;
 }
+
 .program_info_wrapper p {
   color: #091a32 !important;
 }
@@ -81,9 +92,11 @@
   max-width: 300px;
   margin: 1rem;
 }
+
 .program_image_wrapper {
   width: 200px;
 }
+
 .program_image_wrapper img {
   max-width: 100%;
 }

@@ -18,10 +18,12 @@ const login = (req, res) => {
 
   //Now we get that user from the database with the following syntax
   db.get(query, params, (err, dbUser) => {
+    if (err) {
+      res.status(404).json({ error: "Error" });
+    }
+
     if (!dbUser) {
-      res
-        .status(404)
-        .json({ error: "That user does not exist. Please try again..." });
+      res.status(404).json({ error: "That user does not exist." });
       return;
     }
 
@@ -32,10 +34,7 @@ const login = (req, res) => {
     if (dbUser.password === req.body.password) {
       delete dbUser.password;
       req.session.user = dbUser;
-      res.json({
-        success: "The login was successfull",
-        loggedInUser: userInDB,
-      });
+      res.json({ success: "You are now logged in", loggedInUser: dbUser });
       return;
     } else {
       res.status(401).json({ error: "Not correct credentials" });
@@ -51,6 +50,9 @@ const register = (req, res) => {
   let query = `SELECT * FROM users WHERE email = $email`;
   let params = { $email: userToRegister.email };
   db.get(query, params, (err, existingUser) => {
+    if (err) {
+      res.status(404).json({ error: "An error occured..." });
+    }
     if (existingUser) {
       res.status(400).json({ error: "User with that email already exists" });
       return;

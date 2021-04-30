@@ -30,6 +30,7 @@ const ChannelsProvider = (props) => {
     console.log("channel: ", channel);
     setSpecificChannel(channel);
   };
+
   //Fetch specific channel that user clicked on
   const getProgramById = async (channelId) => {
     let programs = await fetch(`/api/v1/channel/programs/${channelId}`);
@@ -37,6 +38,7 @@ const ChannelsProvider = (props) => {
     console.log("PROGRAMS: ", programs);
     setChannelPrograms(programs);
   };
+
   //Fetch all categories
   const getAllCategories = async () => {
     let categories = await fetch(`/api/v1/categories`);
@@ -44,6 +46,7 @@ const ChannelsProvider = (props) => {
     console.log("Categories: ", categories);
     setCategories(categories);
   };
+  
   //Fetch all programs based on category
   const getProgramsByCategory = async (categoryId) => {
     let programs = await fetch(`/api/v1/programs/${categoryId}`);

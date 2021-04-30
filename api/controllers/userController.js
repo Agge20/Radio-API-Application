@@ -3,7 +3,7 @@ const Encrypt = require("../Encrypt");
 const path = require("path");
 
 const db = new sqlite3.Database(
-  path.join(__dirname, "../radio-SE-Database.db")
+  path.join(__dirname, "../../radio-SE-Database.db")
 );
 
 // With the whoami we check if someone is logged in
@@ -43,6 +43,12 @@ const login = (req, res) => {
   });
 };
 
+//Logout user
+const logout = (req, res) => {
+  delete req.session.user;
+  res.json({ success: "Logout Successfully" });
+};
+
 //register user
 const register = (req, res) => {
   let userToRegister = req.body;
@@ -78,4 +84,4 @@ const register = (req, res) => {
 };
 
 // Export the differents route handlers
-module.exports = { whoami, login, register };
+module.exports = { whoami, login, register, logout };

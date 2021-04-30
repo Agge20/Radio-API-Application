@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext.js";
 
 const RegisterLogin = () => {
-  const { registerUser, logInUser } = useContext(UserContext);
+  const history = useHistory();
+  const { registerUser, logInUser, isLoggedIn } = useContext(UserContext);
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
@@ -30,7 +32,9 @@ const RegisterLogin = () => {
   const handleLoginPasswordChange = (e) => {
     setLoginPassword(e.target.value);
   };
-
+  if (isLoggedIn) {
+    history.push("profile");
+  }
   return (
     <div>
       <h2>Register</h2>

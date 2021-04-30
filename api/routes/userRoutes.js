@@ -5,7 +5,8 @@ const userController = require("../controllers/userController");
 
 // User routes setup goes underneath here...
 router.get("/whoami", userController.whoami);
-router.get("/login", userController.login);
 router.post("/register", userController.register);
+router.post("/login", userController.login);
+router.get("/logout", userController.logout);
 
 module.exports = router;

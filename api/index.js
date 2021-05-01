@@ -5,6 +5,7 @@ const port = 3001;
 
 const channelRoutes = require("./routes/channelRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const favoritesRoutes = require("./routes/favoritesRoutes.js");
 
 // const programRoutes = require("./routes/programRoutes");
 
@@ -23,6 +24,7 @@ app.use(
 
 app.use("/api/v1", channelRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/favorites", favoritesRoutes);
 // JAG GLÖMDE LÄGGA PROGRAM-ROUTES I EN EGEN ROUTES-FIL - URSÄKTA ^^
 // app.use("/api/v1/programs", programRoutes);
 

@@ -22,10 +22,35 @@ const getChannelById = async (req, res) => {
   channel = await channel.json();
   res.json(channel);
 };
+//Get program by id
+const getProgramById = async (req, res) => {
+  let programs = await fetch(
+    `http://api.sr.se/api/v2/programs/index?format=json&channelid=${req.params.channelId}&pagination-false`
+  );
+  programs = await programs.json();
+  res.json(programs);
+};
+
+const getAllCategories = async (req, res) => {
+  let categories = await fetch(
+    `http://api.sr.se/api/v2/programcategories?format=json`
+  );
+  categories = await categories.json();
+  res.json(categories);
+};
+
+const getProgramByCategory = async (req, res) => {
+  let programs = await fetch(
+    `http://api.sr.se/api/v2/programs/index?programcategoryid=${req.params.categoryId}&format=json&pagination-false`
+  );
+  programs = await programs.json();
+  console.log("This is the programs based on categoryId", programs);
+  res.json(programs);
+};
 
 const getChannelSchedule = async (req, res) => {
   let channelSchedule = await fetch(
-    `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
+    `http://api.sr.se/api/v2/scheduledepisodes?${json}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.params.searchDate}`
   );
   channelSchedule = await channelSchedule.json();
 
@@ -38,11 +63,15 @@ const getChannelSchedule = async (req, res) => {
   //   };
   // });
 
-  res.json(channelSchedule.schedule);
+  res.json(channelSchedule);
 };
 
 module.exports = {
   getAllChannels,
   getChannelById,
+  getChannelSchedule,
+  getProgramById,
+  getAllCategories,
+  getProgramByCategory,
   getChannelSchedule,
 };

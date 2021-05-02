@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className={styles.main_wrapper}>
       <div className={styles.banner_wrapper}>
-        <h1 className={styles.h1}>Välkommen till SE-Radio</h1>
+        <h1>Välkommen till SE-Radio</h1>
       </div>
       <div className={styles.info_wrapper}>
         <h2>Radiounderhållning i världsklass</h2>
@@ -24,7 +24,7 @@ const Home = () => {
           history.push(`/all-channels`);
         }}
       >
-        Kolla in kanalerna
+        Gå till kanalerna
       </button>
     </div>
   );

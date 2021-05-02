@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import styles from "../styles/ProfileS.module.css";
 
 const Profile = () => {
   const history = useHistory();
@@ -11,9 +12,10 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      <h1>Welcome, {loggedInUser.email}</h1>
-      <button onClick={logOutUser}>Log out</button>
+    <div className={styles.main_wrapper}>
+      <h1>Välkommen, {loggedInUser.email}</h1>
+      <h2>Favoritkanaler</h2>
+      <button onClick={logOutUser}>Logga ut</button>
     </div>
   );
 };

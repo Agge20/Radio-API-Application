@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/UserContext.js";
+import styles from "../styles/RegisterLogin.module.css";
 
 const RegisterLogin = () => {
   const history = useHistory();
@@ -14,6 +15,7 @@ const RegisterLogin = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     registerUser(registerEmail, registerPassword);
+    history.push("registered");
   };
   const handleRegisterEmailChange = (e) => {
     setRegisterEmail(e.target.value);
@@ -36,9 +38,9 @@ const RegisterLogin = () => {
     history.push("profile");
   }
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+    <div className={styles.main_wrapper}>
+      <h2 className={styles.header}>Registrera dig</h2>
+      <form onSubmit={handleRegister} className={styles.form}>
         <input
           type="text"
           placeholder="Enter an email"
@@ -51,26 +53,25 @@ const RegisterLogin = () => {
           value={registerPassword}
           onChange={handleRegisterPasswordChange}
         />
-        <button onClick={handleRegister}>Submit</button>
+        <button onClick={handleRegister}>Registrera</button>
       </form>
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            placeholder="Enter an email"
-            value={loginEmail}
-            onChange={handleLoginEmailChange}
-          />
-          <input
-            type="text"
-            placeholder="Enter a password"
-            value={loginPassword}
-            onChange={handleLoginPasswordChange}
-          />
-          <button onClick={handleLogin}>Submit</button>
-        </form>
-      </div>
+
+      <h2 className={styles.header}> Eller logga in</h2>
+      <form onSubmit={handleLogin} className={styles.form}>
+        <input
+          type="text"
+          placeholder="Enter an email"
+          value={loginEmail}
+          onChange={handleLoginEmailChange}
+        />
+        <input
+          type="text"
+          placeholder="Enter a password"
+          value={loginPassword}
+          onChange={handleLoginPasswordChange}
+        />
+        <button onClick={handleLogin}>Logga in</button>
+      </form>
     </div>
   );
 };

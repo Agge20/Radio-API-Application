@@ -3,7 +3,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: solid red 2px;
 }
 
 .channelContent_wrapper {
@@ -12,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 5rem;
+  text-align: center;
 }
 
 .channelContent_wrapper img {
@@ -30,12 +30,14 @@
 }
 
 .a_wrapper {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .tagline {
-  width: 50%;
+  width: 80%;
   text-align: center;
   letter-spacing: 0.1rem;
   margin-bottom: 3rem;
@@ -49,7 +51,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 .program_card {
   width: 500px;
@@ -64,6 +65,10 @@
 
 .program_card_inner_wrapper {
   width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .program_info_wrapper {
@@ -74,10 +79,15 @@
   text-align: center;
   padding: 1rem;
 }
-
+.h3 {
+  text-align: center;
+  font-size: 2rem;
+}
 .program_info_wrapper a {
   color: #091a32;
   text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
 }
 
 .program_info_wrapper a:hover {
@@ -99,4 +109,17 @@
 
 .program_image_wrapper img {
   max-width: 100%;
+}
+
+/*  Small devices (landscape phones, 992px and up) */
+@media (min-width: 992px) {
+  .a_wrapper {
+    flex-direction: row;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .tagline {
+    max-width: 50%;
+  }
 }

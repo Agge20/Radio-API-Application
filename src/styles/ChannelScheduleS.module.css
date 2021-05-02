@@ -1,0 +1,70 @@
+.main_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 2rem;
+  background-color: #091a32;
+}
+
+.h3 {
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+.input {
+  margin: 0.5rem;
+  width: 120px;
+  border-radius: 3px;
+  border: solid transparent 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+button {
+  height: 35px;
+  min-width: 50px;
+  background-color: white;
+  border: solid transparent 1px;
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: #091a32;
+  font-family: "Roboto Condensed", sans-serif !important;
+  letter-spacing: 0.2rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.button_container {
+  display: flex;
+}
+.button_container > button {
+  margin: 1rem;
+}
+
+.schedule_main_wrapper {
+  width: 100%;
+}
+.schedule_card {
+  display: flex;
+
+  max-width: 500px;
+  background-color: white;
+  margin: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.schedule_card p {
+  color: black;
+}
+.image_wrapper {
+  max-width: 30%;
+}
+.image_wrapper img {
+  max-width: 100%;
+}
+.info_wrapper {
+  display: flex;
+  flex-direction: column;
+}

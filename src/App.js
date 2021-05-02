@@ -8,6 +8,7 @@ import ChannelsProvider from "./context/ChannelsContext";
 import UserProvider from "./context/UserContext.js";
 import Navbar from "./components/Navbar.js";
 import RegisterLogin from "./pages/RegisterLogin.js";
+import Registered from "./pages/Registered.js";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/kategori/:categoryId" component={CategoryPrograms} />
             <Route path="/profile" component={Profile} />
             <Route path="/register-and-login" component={RegisterLogin} />
+            <Route path="/registered" component={Registered} />
           </BrowserRouter>
         </ChannelsProvider>
       </UserProvider>

@@ -46,7 +46,7 @@ const ChannelsProvider = (props) => {
     console.log("Categories: ", categories);
     setCategories(categories);
   };
-  
+
   //Fetch all programs based on category
   const getProgramsByCategory = async (categoryId) => {
     let programs = await fetch(`/api/v1/programs/${categoryId}`);
@@ -73,6 +73,7 @@ const ChannelsProvider = (props) => {
     getProgramsByCategory,
     programsByCategory,
     schedule,
+    setSchedule,
     getChannelSchedule,
   };
 

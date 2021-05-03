@@ -33,9 +33,7 @@ const Channel = (props) => {
           alt={specificChannel.channel.name}
         />
         <div className={styles.a_wrapper}>
-          <a href={specificChannel.channel.liveaudio.url}>
-            Lyssna på livemusik
-          </a>
+          <a href={specificChannel.channel.liveaudio.url}>Lyssna live</a>
           <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
         </div>
         <p className={styles.tagline}>{specificChannel.channel.tagline}</p>
@@ -47,7 +45,7 @@ const Channel = (props) => {
     console.log(channelPrograms.programs);
     return (
       <div>
-        <h3>Kanalens program</h3>
+        <h3 className={styles.h3}>Kanalens program</h3>
         <div className={styles.programs_wrapper}>
           {channelPrograms.programs.map((program, index) => (
             <div key={index} className={styles.program_card}>

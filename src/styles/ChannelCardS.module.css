@@ -9,13 +9,17 @@
   font-size: 3rem;
   margin: 0px;
   letter-spacing: 0.3rem;
+  text-align: center;
+  margin-bottom: 5rem;
 }
 .main_wrapper h3 {
   font-size: 2rem;
   letter-spacing: 0.3rem;
+  color: #091a32;
+  font-weight: bold;
 }
 .Link {
-  margin: 1rem;
+  margin: 0.75rem;
   color: white;
   font-family: "Montserrat", sans-serif;
   color: white;
@@ -23,11 +27,10 @@
 }
 .Link:hover {
   color: #091a32;
-  font-size: 1.2rem;
 }
 .channel_card {
   background-color: white;
-  height: 250px;
+  height: 300px;
   width: 500px;
   margin: 1rem;
   display: flex;
@@ -36,13 +39,15 @@
   text-align: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.channel_card:hover {
+  cursor: pointer;
+}
 .channel_card img {
   max-width: 100%;
 }
 .channel_card_wrapper {
   min-height: 100vh;
   width: 100%;
-  border: solid blue 2px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -69,4 +74,26 @@ h4 {
 }
 .catogories {
   margin: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  Small devices (landscape phones, 350px and down) */
+@media (max-width: 350px) {
+  .main_wrapper h1 {
+    font-size: 2rem;
+  }
+}
+
+/*  Small devices (landscape phones, 992px and up) */
+@media (min-width: 992px) {
+  .catogories {
+    flex-direction: row;
+  }
+  .Link {
+    margin: 1rem;
+  }
+  .channel_card {
+    height: 250px;
+  }
 }

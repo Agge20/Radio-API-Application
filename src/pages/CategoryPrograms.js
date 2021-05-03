@@ -1,12 +1,13 @@
 import { useEffect, useContext } from "react";
 import { ChannelsContext } from "../context/ChannelsContext";
+import styles from "../styles/CategoryProgramsS.module.css";
 
 const CategoryPrograms = (props) => {
   let { categoryId } = props.match.params;
   const { getProgramsByCategory, programsByCategory } = useContext(
     ChannelsContext
   );
-
+  let originalCategoryId = categoryId;
   switch (categoryId) {
     case "Barn 3 - 8 år":
       categoryId = 2;
@@ -56,14 +57,18 @@ const CategoryPrograms = (props) => {
 
   const renderProgramsByCategory = () => {
     return (
-      <div>
+      <div className={styles.main_wrapper}>
         {programsByCategory.programs.map((program, index) => (
-          <div key={index}>
-            <img src={program.programimage} alt={program.name} />
-            <h3>{program.name}</h3>
-            <p>{program.description}</p>
-            <p>{program.broadcastinfo}</p>
-            <a href={program.programurl}>Gå till program</a>
+          <div key={index} className={styles.card_wrapper}>
+            <div className={styles.inner_wrapper}>
+              <img src={program.programimage} alt={program.name} />
+            </div>
+            <div className={styles.inner_wrapper}>
+              <h3>{program.name}</h3>
+              <p>{program.description}</p>
+              <p>{program.broadcastinfo}</p>
+              <a href={program.programurl}>Gå till program</a>
+            </div>
           </div>
         ))}
       </div>
@@ -78,7 +83,9 @@ const CategoryPrograms = (props) => {
   }
   return (
     <div>
-      <h1>this is category programs page</h1>
+      <h1 className={styles.h1}>
+        Program inom kategorin, {originalCategoryId}
+      </h1>
       {content}
     </div>
   );

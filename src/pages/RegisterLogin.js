@@ -35,7 +35,7 @@ const RegisterLogin = () => {
     setLoginPassword(e.target.value);
   };
   if (isLoggedIn) {
-    history.push("profile");
+    history.push("/logged-in");
   }
   return (
     <div className={styles.main_wrapper}>

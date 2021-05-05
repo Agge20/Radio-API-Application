@@ -2,8 +2,13 @@ import React, { useEffect, useContext } from "react";
 import { ChannelsContext } from "../context/ChannelsContext.js";
 import styles from "../styles/ChannelS.module.css";
 import ChannelSchedule from "../components/ChannelSchedule.js";
+import { FavoritesContext } from "../context/FavoritesContext";
+import { UserContext } from "../context/UserContext";
 
 const Channel = (props) => {
+  const { addFavoriteToUser } = useContext(FavoritesContext);
+  const { loggedInUser, isLoggedIn } = useContext(UserContext);
+
   const {
     getChannelById,
     getProgramById,
@@ -13,7 +18,13 @@ const Channel = (props) => {
 
   //Get the id-params and store it in a variable
   const { channelId } = props.match.params;
-
+  const addFavorite = () => {
+    addFavoriteToUser({
+      channelId: `${specificChannel.channel.id}`,
+      channelName: `${specificChannel.channel.name}`,
+      userId: `${loggedInUser.id}`,
+    });
+  };
   //On render it fetches the specific channel based on id
   useEffect(() => {
     console.log("This is channelId id in Channel:  ", channelId);
@@ -36,6 +47,10 @@ const Channel = (props) => {
           <a href={specificChannel.channel.liveaudio.url}>Lyssna live</a>
           <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
         </div>
+        {isLoggedIn ? (
+          <button onClick={addFavorite}>Markera som favorit</button>
+        ) : null}
+
         <p className={styles.tagline}>{specificChannel.channel.tagline}</p>
       </div>
     );
@@ -79,7 +94,7 @@ const Channel = (props) => {
   if (channelPrograms) {
     programsContent = renderPrograms();
   } else {
-    channelContent = <h3>Cannot load programs...</h3>;
+    programsContent = <h3>Cannot load programs...</h3>;
   }
   return (
     <div className={styles.main_wrapper}>

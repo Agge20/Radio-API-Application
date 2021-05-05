@@ -49,7 +49,9 @@ const Profile = () => {
       <h1>Välkommen, {loggedInUser.email}</h1>
       <h2>Favoritkanaler</h2>
       {favoritesContent}
-      <button onClick={logOutUser}>Logga ut</button>
+      <button className={styles.logout_button} onClick={logOutUser}>
+        Logga ut
+      </button>
     </div>
   );
 };

@@ -50,7 +50,7 @@ const saveFavorite = (req, res) => {
   }
 };
 
-getAllFavorites = (req, res) => {
+const getAllFavorites = (req, res) => {
   let allFavorites = {};
   db.all(
     `SELECT * FROM channels WHERE userId = $id`,
@@ -67,7 +67,29 @@ getAllFavorites = (req, res) => {
   );
 };
 
+//Delete favorite from user
+const deleteFavorite = (req, res) => {
+  let query;
+  let params = { $channelId: req.body.channelId, $userId: req.body.userId };
+
+  //If user wants to delete a channel...
+  if (req.body.channelId) {
+    query = `DELETE FROM channels WHERE channelId = $channelId AND userId = $userId `;
+    db.run(query, params, function (err) {
+      if (err) {
+        res.json({ error: "error", err });
+      } else {
+        res.json({
+          success: "The channel has been deleted from userFavorites",
+          changes: this.changes,
+        });
+      }
+    });
+  }
+};
+
 module.exports = {
   saveFavorite,
   getAllFavorites,
+  deleteFavorite,
 };

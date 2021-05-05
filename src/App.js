@@ -10,6 +10,7 @@ import FavoritesProvider from "./context/FavoritesContext.js";
 import Navbar from "./components/Navbar.js";
 import RegisterLogin from "./pages/RegisterLogin.js";
 import Registered from "./pages/Registered.js";
+import LoggedIn from "./pages/LoggedIn.js";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/profile" component={Profile} />
               <Route path="/register-and-login" component={RegisterLogin} />
               <Route path="/registered" component={Registered} />
+              <Route path="/logged-in" component={LoggedIn} />
             </BrowserRouter>
           </ChannelsProvider>
         </FavoritesProvider>

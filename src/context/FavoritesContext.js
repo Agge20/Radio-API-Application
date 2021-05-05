@@ -38,10 +38,28 @@ const FavoritesProvider = (props) => {
     setUserFavorites(allFavorites);
     console.log("Here is userFavorites in Context:", userFavorites);
   };
+
+  const deleteFavorite = async (userId, channelId) => {
+    let bodyToSend = { userId: `${userId}`, channelId: `${channelId}` };
+    let favoriteToDelete = await fetch("/api/v1/favorites/delete-favorite", {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bodyToSend),
+    });
+    favoriteToDelete = await favoriteToDelete.json();
+    //Reset the list of userFavorites
+    if (favoriteToDelete.success) {
+      setUserFavourites(favoriteToDelete);
+    }
+  };
+
   const values = {
     addFavoriteToUser,
     getAllFavorites,
     userFavorites,
+    deleteFavorite,
   };
 
   return (

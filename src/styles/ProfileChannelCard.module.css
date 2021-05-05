@@ -10,7 +10,9 @@
   align-items: center;
   flex-direction: column;
 }
-.card_wrapper button {
-  background-color: #091a32;
+
+.remove_button {
+  background-color: rgb(231, 63, 63);
   color: white;
+  font-weight: bolder;
 }

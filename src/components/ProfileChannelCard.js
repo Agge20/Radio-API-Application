@@ -7,7 +7,7 @@ import useForceUpdate from "use-force-update";
 
 const ProfileChannelCard = (props) => {
   const history = useHistory();
-  const { deleteFavorite } = useContext(FavoritesContext);
+  const { deleteFavoriteChannel } = useContext(FavoritesContext);
   const { loggedInUser } = useContext(UserContext);
   const forceUpdate = useForceUpdate();
 
@@ -22,8 +22,8 @@ const ProfileChannelCard = (props) => {
       "channelId",
       props.channel.channelId
     );
-    deleteFavorite(loggedInUser.id, props.channel.channelId);
-    alert(`Channel ${props.channel.channelName} deleted`);
+    deleteFavoriteChannel(loggedInUser.id, props.channel.channelId);
+    alert(`Kanal ${props.channel.channelName} borttaget från favoriter`);
     forceUpdate();
   };
 

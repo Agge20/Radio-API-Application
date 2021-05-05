@@ -53,15 +53,17 @@ const logout = (req, res) => {
 const register = (req, res) => {
   let userToRegister = req.body;
   //Checking if user already exist
+
   let query = `SELECT * FROM users WHERE email = $email`;
   let params = { $email: userToRegister.email };
   db.get(query, params, (err, existingUser) => {
-    if (err) {
-      res.status(404).json({ error: "An error occured..." });
-    }
     if (existingUser) {
-      res.status(400).json({ error: "User with that email already exists" });
+      res
+        .status(400)
+        .json({ alreadyExist: "User with that email already exists" });
       return;
+    } else if (err) {
+      res.status(404).json({ error: "An error occured..." });
     }
   });
 

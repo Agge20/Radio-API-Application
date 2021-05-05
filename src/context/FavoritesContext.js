@@ -19,7 +19,7 @@ const FavoritesProvider = (props) => {
     });
     result = await result.json();
     if (result.success) {
-      alert("added favorite!");
+      alert("Tillagd som favorit!");
     }
     return result;
   };
@@ -39,7 +39,7 @@ const FavoritesProvider = (props) => {
     console.log("Here is userFavorites in Context:", userFavorites);
   };
 
-  const deleteFavorite = async (userId, channelId) => {
+  const deleteFavoriteChannel = async (userId, channelId) => {
     let bodyToSend = { userId: `${userId}`, channelId: `${channelId}` };
     let favoriteToDelete = await fetch("/api/v1/favorites/delete-favorite", {
       method: "DELETE",
@@ -59,7 +59,7 @@ const FavoritesProvider = (props) => {
     addFavoriteToUser,
     getAllFavorites,
     userFavorites,
-    deleteFavorite,
+    deleteFavoriteChannel,
   };
 
   return (

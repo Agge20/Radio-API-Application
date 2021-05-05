@@ -13,11 +13,15 @@ const UserProvider = (props) => {
       email: `${newEmail}`,
       password: `${newPassword}`,
     };
-    await fetch("/api/v1/users/register", {
+    let result = await fetch("/api/v1/users/register", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userToRegister),
     });
+    //Check if userAlready exist property exists
+    if (result.alreadyExist) {
+      alert("That user already exists!");
+    }
   };
 
   //Login the user

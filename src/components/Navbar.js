@@ -10,22 +10,22 @@ const Navbar = () => {
       <ul>
         <li>
           <Link to="/" className="Link">
-            Home
+            Hem
           </Link>
         </li>
         <li>
           <Link to="/all-channels" className="Link">
-            Channels
+            Kanaler
           </Link>
         </li>
         <li>
           {isLoggedIn ? (
             <Link to="/profile" className="Link">
-              Profile
+              Profil
             </Link>
           ) : (
             <Link to="/register-and-login" className="Link">
-              Register/Login
+              Registrera/Logga in
             </Link>
           )}
         </li>

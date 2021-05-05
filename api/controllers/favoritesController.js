@@ -11,11 +11,11 @@ const db = new sqlite3.Database(
 // };
 
 const saveFavorite = (req, res) => {
-  //User user added a channel to favorites
+  //User added a channel to favorites
   if (req.body.channelId) {
-    let query = `INSERT INTO channels (channelId, userId) VALUE ($channelId, $channelName, $userId)`;
+    let query = `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
     let params = {
-      $userId: req.session.user.userId,
+      $userId: req.body.userId,
       $channelId: req.body.channelId,
       $channelName: req.body.channelName,
     };
@@ -23,6 +23,7 @@ const saveFavorite = (req, res) => {
     db.run(query, params, function (err, result) {
       if (err) {
         res.status(404).json({ error: err });
+        return;
       } else {
         res.json({ success: "New channel added to favorites" });
       }
@@ -49,6 +50,24 @@ const saveFavorite = (req, res) => {
   }
 };
 
+getAllFavorites = (req, res) => {
+  const allFavorites = {};
+  db.all(
+    `SELECT * FROM channels WHERE userId = $id`,
+    { $id: req.body.userId },
+    (err, result) => {
+      if (err) {
+        res.json({ error: err });
+        return;
+      } else {
+        allFavorites.channels = result;
+        res.json(allFavorites);
+      }
+    }
+  );
+};
+
 module.exports = {
   saveFavorite,
+  getAllFavorites,
 };

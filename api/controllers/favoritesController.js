@@ -51,7 +51,7 @@ const saveFavorite = (req, res) => {
 };
 
 getAllFavorites = (req, res) => {
-  const allFavorites = {};
+  let allFavorites = {};
   db.all(
     `SELECT * FROM channels WHERE userId = $id`,
     { $id: req.body.userId },

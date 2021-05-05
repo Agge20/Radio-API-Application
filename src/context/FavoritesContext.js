@@ -25,14 +25,16 @@ const FavoritesProvider = (props) => {
   };
 
   const getAllFavorites = async (userId) => {
-    let allFavorites = await fetch(`/api/v1/favorites/all-favorites`, {
+    let allFavorites = await fetch("/api/v1/favorites/all-favorites", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(userId),
     });
+
     allFavorites = await allFavorites.json();
+    console.log("allFavorites", allFavorites);
     setUserFavorites(allFavorites);
     console.log("Here is userFavorites in Context:", userFavorites);
   };

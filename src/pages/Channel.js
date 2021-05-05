@@ -94,7 +94,7 @@ const Channel = (props) => {
   if (channelPrograms) {
     programsContent = renderPrograms();
   } else {
-    channelContent = <h3>Cannot load programs...</h3>;
+    programsContent = <h3>Cannot load programs...</h3>;
   }
   return (
     <div className={styles.main_wrapper}>

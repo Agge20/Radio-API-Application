@@ -43,10 +43,6 @@
   margin-bottom: 3rem;
 }
 
-.channelContent_wrapper a:hover {
-  color: #091a32;
-}
-
 .programs_wrapper {
   display: flex;
   flex-wrap: wrap;

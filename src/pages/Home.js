@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import styles from "../styles/HomeS.module.css";
 
 const Home = () => {
+
   const history = useHistory();
   return (
     <div className={styles.main_wrapper}>

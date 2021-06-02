@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext();
 
@@ -7,6 +7,26 @@ const UserProvider = (props) => {
   const [loggedInUser, setLoggedInUser] = useState({
     email: "please log in to view this page",
   });
+
+  const whoami = async () => {
+    let sessionUser = await fetch("/api/v1/users/whoami", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    sessionUser = await sessionUser.json();
+    console.log("whoami result: ", sessionUser);
+    if (sessionUser.email) {
+      setLoggedInUser(sessionUser);
+      setIsLoggedIn(true);
+    }
+  };
+
+  useEffect(() => {
+    whoami();
+  }, []);
   //Register user fetch
   const registerUser = async (newEmail, newPassword) => {
     let userToRegister = {
@@ -42,6 +62,7 @@ const UserProvider = (props) => {
 
     if (status.success) {
       setIsLoggedIn(true);
+      console.log("JUMO", status.loggedInUser);
       setLoggedInUser(status.loggedInUser);
     } else {
       alert("Not correct password/email");
@@ -67,6 +88,7 @@ const UserProvider = (props) => {
     logInUser,
     loggedInUser,
     logOutUser,
+    whoami,
   };
 
   return (

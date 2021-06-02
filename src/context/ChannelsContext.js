@@ -31,9 +31,11 @@ const ChannelsProvider = (props) => {
     setSpecificChannel(channel);
   };
 
-  //Fetch specific channel that user clicked on
+  //Fetch specific program based on what channel user clicked on
   const getProgramById = async (channelId) => {
-    let programs = await fetch(`/api/v1/channel/programs/${channelId}`);
+    let programs = await fetch(
+      `http://api.sr.se/api/v2/programs/index?channelid=${channelId}&format=json&pagination=false`
+    );
     programs = await programs.json();
     console.log("PROGRAMS: ", programs);
     setChannelPrograms(programs);
@@ -49,7 +51,9 @@ const ChannelsProvider = (props) => {
 
   //Fetch all programs based on category
   const getProgramsByCategory = async (categoryId) => {
-    let programs = await fetch(`/api/v1/programs/${categoryId}`);
+    let programs = await fetch(
+      `/api/v1/programs/${categoryId}&pagination=false`
+    );
     console.log("categoryId in context", categoryId);
     programs = await programs.json();
     setProgramsByCategory(programs);

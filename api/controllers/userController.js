@@ -8,7 +8,16 @@ const db = new sqlite3.Database(
 
 // With the whoami we check if someone is logged in
 const whoami = (req, res) => {
-  res.json(req.session.user || null);
+  let user;
+  if (req.session.user) {
+    user = req.session.user;
+    res.json(user);
+    return;
+  } else {
+    user = "No session user";
+    res.json(user);
+    return;
+  }
 };
 
 const login = (req, res) => {

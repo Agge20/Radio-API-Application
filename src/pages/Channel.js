@@ -9,19 +9,26 @@ const Channel = (props) => {
   const { addFavoriteToUser } = useContext(FavoritesContext);
   const { loggedInUser, isLoggedIn } = useContext(UserContext);
 
-  const {
-    getChannelById,
-    getProgramById,
-    specificChannel,
-    channelPrograms,
-  } = useContext(ChannelsContext);
+  const { getChannelById, getProgramById, specificChannel, channelPrograms } =
+    useContext(ChannelsContext);
 
   //Get the id-params and store it in a variable
   const { channelId } = props.match.params;
-  const addFavorite = () => {
+
+  const addChannelFavorite = () => {
+    console.log("BONGA", loggedInUser);
     addFavoriteToUser({
       channelId: `${specificChannel.channel.id}`,
       channelName: `${specificChannel.channel.name}`,
+      userId: `${loggedInUser.id}`,
+    });
+  };
+
+  const addProgramFavorite = (programId, programName, programUrl) => {
+    addFavoriteToUser({
+      programId: `${programId}`,
+      programName: `${programName}`,
+      programUrl: `${programUrl}`,
       userId: `${loggedInUser.id}`,
     });
   };
@@ -48,7 +55,7 @@ const Channel = (props) => {
           <a href={specificChannel.channel.siteurl}>Vår hemsida</a>
         </div>
         {isLoggedIn ? (
-          <button onClick={addFavorite}>Markera som favorit</button>
+          <button onClick={addChannelFavorite}>Markera som favorit</button>
         ) : null}
 
         <p className={styles.tagline}>{specificChannel.channel.tagline}</p>
@@ -56,7 +63,6 @@ const Channel = (props) => {
     );
   };
   const renderPrograms = () => {
-    console.log("This is channelPrograms, ", channelPrograms);
     console.log(channelPrograms.programs);
     return (
       <div>
@@ -75,6 +81,19 @@ const Channel = (props) => {
                 <h4>{program.name}</h4>
                 <p>{program.description}</p>
                 <a href={program.programurl}>Gå till programmet</a>
+                {isLoggedIn ? (
+                  <button
+                    onClick={() =>
+                      addProgramFavorite(
+                        program.id,
+                        program.name,
+                        program.programurl
+                      )
+                    }
+                  >
+                    Markera som favorit
+                  </button>
+                ) : null}
                 <h3>Sänds {program.broadcastinfo}</h3>
               </div>
             </div>

@@ -1,5 +1,5 @@
 .card_wrapper {
-  height: 125px;
+  height: 150px;
   width: 250px;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -15,4 +15,8 @@
   background-color: rgb(231, 63, 63);
   color: white;
   font-weight: bolder;
+}
+.a {
+  color: black !important;
+  text-decoration: none !important;
 }
